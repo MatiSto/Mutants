@@ -30,41 +30,29 @@ public class MutantController  extends BaseControllerImplementation<Mutant,Mutan
 	@Autowired
 	HumanServiceImplementation hservice;
 	
-    @PostMapping("/ismutant")
-    public ResponseEntity<?> isMutant( @RequestBody Mutant mutant){
+    	@PostMapping("/ismutant")
+    	public ResponseEntity<?> isMutant( @RequestBody Mutant mutant){
 
-     
-    	try {
-        	  
+    	try { 
         	String[] dna= mutant.getDna();
-        	 
-        	 boolean resultado =servicio.isMutant(dna); 
-        	 
-        	 if(resultado) {
-        		 
-        		 if(validacion(dna)) {
-        		
-        	     servicio.save(mutant);
-        		 
-        		 return ResponseEntity.status(HttpStatus.OK).body("Es mutante!!!!");
+        	boolean resultado =servicio.isMutant(dna);        	 
+        	if(resultado) {    		 
+        		if(validacion(dna)) {
+        	     		servicio.save(mutant);
+        		 	return ResponseEntity.status(HttpStatus.OK).body("Es mutante!!!!");
         		 }else {
-        			 throw new Exception();
-        			  
+        			throw new Exception();
         		 }
-        		 
-        		 
-        	 }else {
-        		 
+	 	}else {
         		 if(validacion(dna)) {
-        		Human h = new Human(dna);
-        		hservice.saveHuman(h);
-        		 
-        		return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Es humano!!!!.):");
+        			Human h = new Human(dna);
+        			hservice.saveHuman(h);
+        			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Es humano!!!!.):");
         		 }else {
         			 throw new Exception();
         			 
         		 }
-        		  }
+        	}
          
          }catch(Exception e) {
              return ResponseEntity.status(HttpStatus.FORBIDDEN).body("{\"Error\":\"El adn ya existe\"}");
