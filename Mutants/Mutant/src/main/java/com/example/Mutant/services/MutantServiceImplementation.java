@@ -17,8 +17,6 @@ import com.example.Mutant.entities.Mutant;
 import com.example.Mutant.repositories.BaseRepository;
 import com.example.Mutant.repositories.MutantRepository;
 
-
-
 @Service
 public class MutantServiceImplementation  extends BaseServiceImplementation<Mutant,Long> implements MutantService  {
 	
@@ -29,12 +27,9 @@ public class MutantServiceImplementation  extends BaseServiceImplementation<Muta
 		super(baseRepository);
 	}
 	
-	
-	
 	@Override
 	@Transactional
-	
-	 public boolean isMutant(String[] dna) {
+	public boolean isMutant(String[] dna) {
         char[][] dna1 = convertirToArreglo(dna);
         int diagonalPrincipal = diagonalPrincipal(dna1);
         int horizontal  = horizontal(dna1);
@@ -49,7 +44,7 @@ public class MutantServiceImplementation  extends BaseServiceImplementation<Muta
     }
     
 	@Transactional
-    public char[][] invArray(char[][] n) {	
+   	 public char[][] invArray(char[][] n) {	
         char aux;
         for (int i = 0; i < n.length; i++) {
             for(int j = 0; j < n.length/2; j++){
@@ -62,7 +57,7 @@ public class MutantServiceImplementation  extends BaseServiceImplementation<Muta
     }
 
 	@Transactional
-    public  void mostrarArray(char[][] m){
+    	public  void mostrarArray(char[][] m){
         for (int i = 0; i < m.length; i++) {
             for(int j = 0; j < m.length; j++){
                 System.out.print(m[i][j]);
@@ -72,7 +67,7 @@ public class MutantServiceImplementation  extends BaseServiceImplementation<Muta
     }
 
 	@Transactional
-    public  int diagonalSecundaria(char[][] matriz) {
+   	 public  int diagonalSecundaria(char[][] matriz) {
         //Calcula la altura y la anchura de la matriz introducida.
         Integer altura = matriz.length, anchura = matriz[0].length;
 
@@ -89,7 +84,7 @@ public class MutantServiceImplementation  extends BaseServiceImplementation<Muta
 
 	
 	@Transactional
-    public  int horizontal(char[][] matriz) {
+    	public  int horizontal(char[][] matriz) {
         // Calcula la altura y la anchura de la matriz introducida.
         Integer altura = matriz.length, anchura = matriz[0].length;
         ArrayList<Boolean> mutant = new ArrayList<Boolean>();
